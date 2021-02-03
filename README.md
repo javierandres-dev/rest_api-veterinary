@@ -9,6 +9,7 @@ How does it look? Take a look at []()
 * JavaScript
 * NodeJS
   - Express
+* MongoDB
 
 ## Software engineer
 [Javier Andrés Garzón Patarroyo](https://www.javierandresgp.com)
