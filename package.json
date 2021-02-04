@@ -1,0 +1,40 @@
+{
+  "name": "rest_api-veterinary",
+  "version": "0.0.1",
+  "description": ":open_file_folder: rest_api-veterinary",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js --exec babel-node",
+    "build": "babel src --out-dir dist",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javierandresgp/rest_api-veterinary.git"
+  },
+  "keywords": [],
+  "author": "https://www.javierandresgp.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javierandresgp/rest_api-veterinary/issues"
+  },
+  "homepage": "https://github.com/javierandresgp/rest_api-veterinary#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.14",
+    "mongoose-paginate-v2": "^1.3.14"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/node": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7"
+  }
+}
