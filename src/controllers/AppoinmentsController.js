@@ -4,15 +4,14 @@ import { getPagination } from "../libs/getPagination";
 
 export const createAppoinment = async (req, res) => {
   try {
-    const { name, owner, date, phone, time, symptom, discharged } = req.body;
+    const { date, time, client, patient, reason, done } = req.body;
     const newAppoinment = new Appoinment({
-      name,
-      owner,
       date,
-      phone,
       time,
-      symptom,
-      discharged: discharged ? discharged : false,
+      client,
+      patient,
+      reason,
+      done: done ? done : false,
     });
     const appoinmentCreated = await newAppoinment.save();
     res.json(appoinmentCreated);
@@ -26,9 +25,9 @@ export const readAllAppoinments = async (req, res) => {
   try {
     //const appoinments = await Appoinment.find();
     //res.json(appoinments);
-    const { page, size, name } = req.query;
-    const condition = name
-      ? { name: { $regex: new RegExp(name), $options: "i" } }
+    const { page, size, client } = req.query;
+    const condition = client
+      ? { name: { $regex: new RegExp(client), $options: "i" } }
       : {};
     const { limit, offset } = getPagination(page, size);
     const data = await Appoinment.paginate(condition, { offset, limit });
@@ -54,20 +53,20 @@ export const readAnAppoinment = async (req, res) => {
   }
 };
 
-export const readAllCurrent = async (req, res) => {
+export const readAllPending = async (req, res) => {
   try {
-    const allCurrent = await Appoinment.find({ discharged: false });
-    res.json(allCurrent);
+    const allPending = await Appoinment.find({ done: false });
+    res.json(allPending);
   } catch (error) {
     res.status(400).json({ message: error.message || "Something went wrong" });
     console.log(`Error: ${error}`);
   }
 };
 
-export const readAllDischarged = async (req, res) => {
+export const readAllDone = async (req, res) => {
   try {
-    const allDischarged = await Appoinment.find({ discharged: true });
-    res.json(allDischarged);
+    const allDone = await Appoinment.find({ done: true });
+    res.json(allDone);
   } catch (error) {
     res.status(400).json({ message: error.message || "Something went wrong" });
     console.log(`Error: ${error}`);

@@ -4,22 +4,7 @@ import paginate from "mongoose-paginate-v2";
 
 const appoinment = new Schema(
   {
-    name: {
-      type: String,
-      trim: true,
-      required: true,
-    },
-    owner: {
-      type: String,
-      trim: true,
-      required: true,
-    },
     date: {
-      type: String,
-      trim: true,
-      required: true,
-    },
-    phone: {
       type: String,
       trim: true,
       required: true,
@@ -29,12 +14,22 @@ const appoinment = new Schema(
       trim: true,
       required: true,
     },
-    symptom: {
+    client: {
       type: String,
       trim: true,
       required: true,
     },
-    discharged: false,
+    patient: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    reason: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    done: false,
   },
   {
     versionKey: false,

@@ -3,8 +3,8 @@ import { Router } from "express";
 import {
   createAppoinment,
   readAllAppoinments,
-  readAllCurrent,
-  readAllDischarged,
+  readAllPending,
+  readAllDone,
   readAnAppoinment,
   updateAnAppoinment,
   deleteAnAppoinment,
@@ -16,9 +16,9 @@ router.post("/", createAppoinment);
 
 router.get("/", readAllAppoinments);
 
-router.get("/current", readAllCurrent);
+router.get("/pending", readAllPending);
 
-router.get("/discharged", readAllDischarged);
+router.get("/done", readAllDone);
 
 router.get("/:id", readAnAppoinment);
 
