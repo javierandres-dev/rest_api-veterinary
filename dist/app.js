@@ -34,10 +34,15 @@ var corsOptions = {
     }
   }
 };
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 4000);
 app.get("/", function (req, res) {
   res.json({
-    message: "Hello, World!"
+    message: "Home"
+  });
+});
+app.get("/api/v1", function (req, res) {
+  res.json({
+    message: "Login"
   });
 });
 app.use((0, _morgan["default"])("dev"));

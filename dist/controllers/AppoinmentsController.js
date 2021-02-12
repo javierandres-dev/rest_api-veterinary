@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteAnAppoinment = exports.updateAnAppoinment = exports.readAllDischarged = exports.readAllCurrent = exports.readAnAppoinment = exports.readAllAppoinments = exports.createAppoinment = void 0;
+exports.deleteAnAppoinment = exports.updateAnAppoinment = exports.readAllDone = exports.readAllPending = exports.readAnAppoinment = exports.readAllAppoinments = exports.createAppoinment = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -17,22 +17,21 @@ var _getPagination2 = require("../libs/getPagination");
 
 var createAppoinment = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var _req$body, name, owner, date, phone, time, symptom, discharged, newAppoinment, appoinmentCreated;
+    var _req$body, date, time, client, patient, reason, done, newAppoinment, appoinmentCreated;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _req$body = req.body, name = _req$body.name, owner = _req$body.owner, date = _req$body.date, phone = _req$body.phone, time = _req$body.time, symptom = _req$body.symptom, discharged = _req$body.discharged;
+            _req$body = req.body, date = _req$body.date, time = _req$body.time, client = _req$body.client, patient = _req$body.patient, reason = _req$body.reason, done = _req$body.done;
             newAppoinment = new _AppoinmentsModel["default"]({
-              name: name,
-              owner: owner,
               date: date,
-              phone: phone,
               time: time,
-              symptom: symptom,
-              discharged: discharged ? discharged : false
+              client: client,
+              patient: patient,
+              reason: reason,
+              done: done ? done : false
             });
             _context.next = 5;
             return newAppoinment.save();
@@ -68,7 +67,7 @@ exports.createAppoinment = createAppoinment;
 
 var readAllAppoinments = /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
-    var _req$query, page, size, name, condition, _getPagination, limit, offset, data;
+    var _req$query, page, size, client, condition, _getPagination, limit, offset, data;
 
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -77,10 +76,10 @@ var readAllAppoinments = /*#__PURE__*/function () {
             _context2.prev = 0;
             //const appoinments = await Appoinment.find();
             //res.json(appoinments);
-            _req$query = req.query, page = _req$query.page, size = _req$query.size, name = _req$query.name;
-            condition = name ? {
+            _req$query = req.query, page = _req$query.page, size = _req$query.size, client = _req$query.client;
+            condition = client ? {
               name: {
-                $regex: new RegExp(name),
+                $regex: new RegExp(client),
                 $options: "i"
               }
             } : {};
@@ -167,9 +166,9 @@ var readAnAppoinment = /*#__PURE__*/function () {
 
 exports.readAnAppoinment = readAnAppoinment;
 
-var readAllCurrent = /*#__PURE__*/function () {
+var readAllPending = /*#__PURE__*/function () {
   var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
-    var allCurrent;
+    var allPending;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
@@ -177,12 +176,12 @@ var readAllCurrent = /*#__PURE__*/function () {
             _context4.prev = 0;
             _context4.next = 3;
             return _AppoinmentsModel["default"].find({
-              discharged: false
+              done: false
             });
 
           case 3:
-            allCurrent = _context4.sent;
-            res.json(allCurrent);
+            allPending = _context4.sent;
+            res.json(allPending);
             _context4.next = 11;
             break;
 
@@ -202,16 +201,16 @@ var readAllCurrent = /*#__PURE__*/function () {
     }, _callee4, null, [[0, 7]]);
   }));
 
-  return function readAllCurrent(_x7, _x8) {
+  return function readAllPending(_x7, _x8) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-exports.readAllCurrent = readAllCurrent;
+exports.readAllPending = readAllPending;
 
-var readAllDischarged = /*#__PURE__*/function () {
+var readAllDone = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(req, res) {
-    var allDischarged;
+    var allDone;
     return _regenerator["default"].wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
@@ -219,12 +218,12 @@ var readAllDischarged = /*#__PURE__*/function () {
             _context5.prev = 0;
             _context5.next = 3;
             return _AppoinmentsModel["default"].find({
-              discharged: true
+              done: true
             });
 
           case 3:
-            allDischarged = _context5.sent;
-            res.json(allDischarged);
+            allDone = _context5.sent;
+            res.json(allDone);
             _context5.next = 11;
             break;
 
@@ -244,12 +243,12 @@ var readAllDischarged = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 7]]);
   }));
 
-  return function readAllDischarged(_x9, _x10) {
+  return function readAllDone(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.readAllDischarged = readAllDischarged;
+exports.readAllDone = readAllDone;
 
 var updateAnAppoinment = /*#__PURE__*/function () {
   var _ref6 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
