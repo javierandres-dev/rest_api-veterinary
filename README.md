@@ -3,7 +3,7 @@
 
 ## Description
 REST API Veterinary.  
-How does it look? Take a look at []()
+How does it work? Take a look at []()
 
 ## Routes
 * GET /
