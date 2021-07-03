@@ -35,5 +35,5 @@ How does it work? Take a look at []()
     - nodemon
 * MongoDB
 
-## Software engineer
+## Software Developer
 [Javier Andrés Garzón Patarroyo](https://www.javierandresgp.com)
